@@ -1,18 +1,38 @@
 import ListaTarea from "./ListaTarea";
 import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
 
 const Formulario = () => {
+  // aqui va la logica
+  const [tarea, setTarea] = useState(""); //para guardar la tarea
+  const [arregloTarea, setArregloTarea] = useState([]); //para guardar lo del arreglo
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // no podemos usar el push con el state
+    // operador spreed(...) para agregar nuevas tareas asi concatena las tareas mientras las voy agregando
+    setArregloTarea([...arregloTarea, tarea]);
+    // limpiar el input
+    setTarea('');
+  };
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
-          <Form.Control type="text" placeholder="Ingrese una tarea" />
-        <Button variant="success" type="submit">
-          Enviar
-        </Button>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese una tarea"
+            onChange={(e) => {
+              setTarea(e.target.value) }}
+              value = {tarea}/>
+          {/* // lo que escribo en el input lo guarda en el state Tarea */}
+          <Button variant="success" type="submit">
+            Enviar
+          </Button>
         </Form.Group>
       </Form>
-      <ListaTarea></ListaTarea>
+      <ListaTarea arregloTarea={arregloTarea}></ListaTarea>
     </div>
   );
 };
