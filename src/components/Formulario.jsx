@@ -1,11 +1,20 @@
 import ListaTarea from "./ListaTarea";
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Formulario = () => {
+  // busco los datos del locastorage
+  const tareasLocalStorage = JSON.parse(localStorage.getItem('arregloTareaKey')) || [];
   // aqui va la logica
   const [tarea, setTarea] = useState(""); //para guardar la tarea
-  const [arregloTarea, setArregloTarea] = useState([]); //para guardar lo del arreglo
+  const [arregloTarea, setArregloTarea] = useState(tareasLocalStorage); //para guardar lo del arreglo
+  // ciclo de vida
+  useEffect(()=>{
+    //  console.log('Prueba de ciclo de vida del componente')
+    //  guardar en localstorage
+    localStorage.setItem('arregloTareaKey', JSON.stringify(arregloTarea))
+
+  }, [arregloTarea])
 
   const handleSubmit = (e) => {
     e.preventDefault();

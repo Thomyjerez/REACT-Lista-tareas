@@ -7,7 +7,7 @@ function App() {
     <Container className='my-5'>
       <h1 className='display-4 text-center'>Lista de tareas</h1>
       <hr />
-      <Formulario></Formulario>
+      <Formulario> </Formulario>
     </Container>
   );
 }
