@@ -13,6 +13,7 @@ const ListaTarea = ({arregloTarea}) => {
       {/*utilizamos key porque cada child tiene que tener un nombre distinto ,
       tarea representa cada elemento del arreglo, representa cada posicion 
       de ese elemento en el arreglo */}
+      {/* key y nombreTarea son props */}
     </ListGroup>
   );
 };
